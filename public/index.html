@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Color Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Image Color Analyzer</h1>
+            <p>Upload images to extract color palettes and download CSV statistics.</p>
+        </header>
+
+        <main>
+            <div class="card control-panel">
+                <form id="uploadForm">
+                    <div class="dropzone" id="dropzone">
+                        <div id="dropzoneContent">
+                            <span class="icon">📁</span>
+                            <p>Drag & Drop an image here<br>or <span class="browse-link">browse</span></p>
+                        </div>
+                        <img id="previewImage" class="hidden" alt="Preview">
+                        <input type="file" id="fileInput" name="image" accept="image/*" hidden>
+                    </div>
+
+                    <div class="settings">
+                        <label for="thresholdRange">
+                            Color Similarity Level: <span id="thresholdValue">0</span>
+                        </label>
+                        <input type="range" id="thresholdRange" name="threshold" min="0" max="10" value="0">
+                        <p class="hint">0 = Exact match. 1-10 = Higher levels merge more similar colors.</p>
+                    </div>
+
+                    <button type="submit" id="analyzeBtn" disabled>Analyze Images</button>
+                </form>
+            </div>
+
+            <!-- New Palette Display Area -->
+            <div id="paletteArea" class="hidden">
+                <!-- Palettes injected here -->
+            </div>
+
+            <div id="resultsArea">
+                <!-- Results injected here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Template for a single image result -->
+    <template id="resultTemplate">
+        <div class="card result-card">
+            <div class="result-header">
+                <h3 class="filename">image.png</h3>
+                <div class="meta">
+                    <span class="badge unique-count">0 Unique Colors</span>
+                </div>
+                <button class="download-btn">Download CSV</button>
+            </div>
+            <div class="table-container">
+                <table class="color-table">
+                    <thead>
+                        <tr>
+                            <th>Swatch</th>
+                            <th>Hex</th>
+                            <th>RGB</th>
+                            <th>Count</th>
+                            <th>%</th>
+                            <th>Merged</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows injected via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </template>
+
+    <div id="loadingOverlay" class="hidden">
+        <div class="spinner"></div>
+        <p>Analyzing pixels...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
