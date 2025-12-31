@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (files.length > 0) {
             const file = files[0];
             if (!file.type.startsWith('image/')) {
-                alert('Please upload an image file.');
+                alert('画像ファイルをアップロードしてください。');
                 return;
             }
 
@@ -103,12 +103,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.success) {
                 renderResult(data.result);
             } else {
-                alert('Analysis failed: ' + (data.message || 'Unknown error'));
+                alert('分析に失敗しました: ' + (data.message || '不明なエラー'));
             }
 
         } catch (error) {
             console.error(error);
-            alert('An error occurred during upload.');
+            alert('アップロード中にエラーが発生しました。');
         } finally {
             loadingOverlay.classList.add('hidden');
         }
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         paletteRow.className = 'card palette-row';
 
         const title = document.createElement('h4');
-        title.textContent = `Palette: ${res.filename}`;
+        title.textContent = `パレット: ${res.filename}`;
         paletteRow.appendChild(title);
 
         const strip = document.createElement('div');
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const clone = template.content.cloneNode(true);
 
         clone.querySelector('.filename').textContent = res.filename;
-        clone.querySelector('.unique-count').textContent = `${res.uniqueColorGroups} Color Groups`;
+        clone.querySelector('.unique-count').textContent = `${res.uniqueColorGroups} 色グループ`;
 
         const tbody = clone.querySelector('tbody');
         const LIMIT = 100;
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (res.colors.length > LIMIT) {
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td colspan="6" style="text-align:center; color:#888;">... and ${res.colors.length - LIMIT} more colors (Download CSV to see all)</td>`;
+            tr.innerHTML = `<td colspan="6" style="text-align:center; color:#888;">... 他 ${res.colors.length - LIMIT} 色 (すべて見るにはCSVをダウンロード)</td>`;
             tbody.appendChild(tr);
         }
 
@@ -179,14 +179,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function downloadCSV(colors, filename) {
         if (!colors || colors.length === 0) {
-            alert("No data to download.");
+            alert("ダウンロードするデータがありません。");
             return;
         }
 
         let csvContent = "";
         // Add BOM for Excel compatibility with UTF-8
         csvContent += "\uFEFF";
-        csvContent += "Hex,RGB,Count,Percentage,MergedColors\n";
+        csvContent += "Hex,RGB,カウント,割合,統合された色数\n";
 
         colors.forEach(c => {
             // Escape RGB string just in case

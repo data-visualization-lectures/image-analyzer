@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Color Analyzer</title>
+    <title>画像カラーアナライザー</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -12,8 +12,8 @@
 <body>
     <div class="container">
         <header>
-            <h1>Image Color Analyzer</h1>
-            <p>Upload images to extract color palettes and download CSV statistics.</p>
+            <h1>画像カラーアナライザー</h1>
+            <p>画像をアップロードしてカラーパレットを抽出し、CSV統計をダウンロードします。</p>
         </header>
 
         <main>
@@ -22,21 +22,21 @@
                     <div class="dropzone" id="dropzone">
                         <div id="dropzoneContent">
                             <span class="icon">📁</span>
-                            <p>Drag & Drop an image here<br>or <span class="browse-link">browse</span></p>
+                            <p>画像をドラッグ＆ドロップ<br>または <span class="browse-link">参照</span></p>
                         </div>
-                        <img id="previewImage" class="hidden" alt="Preview">
+                        <img id="previewImage" class="hidden" alt="プレビュー">
                         <input type="file" id="fileInput" name="image" accept="image/*" hidden>
                     </div>
 
                     <div class="settings">
                         <label for="thresholdRange">
-                            Color Similarity Level: <span id="thresholdValue">0</span>
+                            色の類似度レベル: <span id="thresholdValue">0</span>
                         </label>
                         <input type="range" id="thresholdRange" name="threshold" min="0" max="10" value="0">
-                        <p class="hint">0 = Exact match. 1-10 = Higher levels merge more similar colors.</p>
+                        <p class="hint">0 = 完全一致。1-10 = レベルが高いほど類似した色が統合されます。</p>
                     </div>
 
-                    <button type="submit" id="analyzeBtn" disabled>Analyze Images</button>
+                    <button type="submit" id="analyzeBtn" disabled>画像を分析</button>
                 </form>
             </div>
 
@@ -57,20 +57,20 @@
             <div class="result-header">
                 <h3 class="filename">image.png</h3>
                 <div class="meta">
-                    <span class="badge unique-count">0 Unique Colors</span>
+                    <span class="badge unique-count">0 ユニーク色</span>
                 </div>
-                <button class="download-btn">Download CSV</button>
+                <button class="download-btn">CSVをダウンロード</button>
             </div>
             <div class="table-container">
                 <table class="color-table">
                     <thead>
                         <tr>
-                            <th>Swatch</th>
+                            <th>見本</th>
                             <th>Hex</th>
                             <th>RGB</th>
-                            <th>Count</th>
+                            <th>カウント</th>
                             <th>%</th>
-                            <th>Merged</th>
+                            <th>統合数</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -83,7 +83,7 @@
 
     <div id="loadingOverlay" class="hidden">
         <div class="spinner"></div>
-        <p>Analyzing pixels...</p>
+        <p>ピクセルを分析中...</p>
     </div>
 
     <script src="script.js"></script>
